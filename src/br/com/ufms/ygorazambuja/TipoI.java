@@ -47,4 +47,7 @@ public class TipoI {
     public boolean isContains(String s) {
         return opcode.containsValue(getI(s));
     }
+
+
+
 }

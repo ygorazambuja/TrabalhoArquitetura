@@ -7,6 +7,7 @@ public class TipoR {
 
     Map function = new HashMap();
 
+
     public void setFunctionR() {
 
         // Dizem que é achado pelo Function.
@@ -40,15 +41,14 @@ public class TipoR {
 
     }
 
-
-
-    public Object getR(String s) {
-        return function.get(s);
-    }
+    public Object getR(String s) { return function.get(s);  }
 
     public boolean isContains(String s) {
         return function.containsValue(getR(s));
     }
+
+    public boolean getReg(String s) { return function.containsValue(s); }
+
 
 
 

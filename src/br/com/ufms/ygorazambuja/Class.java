@@ -16,7 +16,7 @@ public class Class {
     // variavel para armazenar o numero binario pronto para ser trabalhado.
     static String binario = "";
     static String function = "";
-    static String opcode = "";
+    static String target = "";
     private static Scanner inp = new Scanner(System.in);
 
     /**
@@ -69,41 +69,12 @@ public class Class {
     }
 
 
-    public static String decodif(String Str, TipoJ j,TipoI i,TipoR r) {
+    public static String decodif(String Str) {
+
+        // a vontade de rir é grande
+        // mais a de chorar é maior.
 
         Str = binario;
-
-        String tipor1 = Str.substring(26,32);  // function
-        String tipor2 = Str.substring(21, 26); // shift amount
-        String tipor3 = Str.substring(16, 21); // registrador D
-        String tipor4 = Str.substring(11, 16); // registrador T
-        String tipor5 = Str.substring(6, 11);  // registrador S
-        String tipor6 = Str.substring(0, 6);   // opcode
-
-
-        String tipoi1 = Str.substring(16,32);  // imediato
-        String tipoi2 = Str.substring(11, 16); // registrador T
-        String tipoi3 = Str.substring(6, 11);  // registrador S
-        String tipoi4 = Str.substring(0, 6);   // opcode
-
-        String tipoj1 = Str.substring(6,32);   // Target
-        String tipoj2 = Str.substring(0,6);    // opcode
-
-        if(r.isContains(tipor1) && tipor6.equals("000000")) {
-             return (String) r.function.get(tipor1);
-        }
-        if(i.isContains(tipoi4)) {
-            return (String) i.opcode.get(tipoi4);
-        }
-        if(j.isContains(tipoj2)) {
-            return(String) j.opcode.get(tipoj2);
-        } else {
-            throw new IllegalArgumentException("PAU LOCO");
-        }
-
-    }
-
-    public static void main(String[] args) {
 
         TipoR tipor = new TipoR();
         tipor.setFunctionR();
@@ -112,6 +83,62 @@ public class Class {
         TipoJ tipoj = new TipoJ();
         tipoj.setOpcode();
 
+        String tipor1 = Str.substring(26, 32);  // function
+        String tipor2 = Str.substring(21, 26); // shift amount
+        String tipor3 = Str.substring(16, 21); // registrador D
+        String tipor4 = Str.substring(11, 16); // registrador T
+        String tipor5 = Str.substring(6, 11);  // registrador S
+        String tipor6 = Str.substring(0, 6);   // opcode
+
+
+        String tipoi1 = Str.substring(16, 32);  // imediato
+        String tipoi2 = Str.substring(11, 16); // registrador T
+        String tipoi3 = Str.substring(6, 11);  // registrador S
+        String tipoi4 = Str.substring(0, 6);   // opcode
+
+        String tipoj1 = Str.substring(6, 32);   // Target
+        String tipoj2 = Str.substring(0, 6);    // opcode
+
+        target = Str.substring(6, 32);
+
+        if (tipor.isContains(tipor1) && tipor6.equals("000000")) {
+            return (String) tipor.function.get(tipor1);
+        }
+        if (tipoi.isContains(tipoi4)) {
+            return (String) tipoi.opcode.get(tipoi4);
+        }
+        if (tipoj.isContains(tipoj2)) {
+            return (String) tipoj.opcode.get(tipoj2);
+        } else {
+            throw new IllegalArgumentException("PAU LOCO");
+        }
+
+
+    }
+
+
+    public static String tMemorias(String s) {
+        TipoJ j = new TipoJ();
+        TipoR r = new TipoR();
+        TipoI i = new TipoI();
+
+        if (s == j.getJ(s)) {
+            return "Target: 0x" + j.endereco(target);
+        }
+
+        if (s == r.getR(s)) {
+            return "tipo R";
+        }
+        if (s == i.getI(s)) {
+
+        }
+
+        throw new IllegalArgumentException("Buguei, Parabens!");
+    }
+
+    public static void main(String[] args) {
+
+
         System.out.println("Digite o Valor: ");
         //  valores devem ser inseridos da seguinte maneira,
         //  0x : para hexadecimal
@@ -119,13 +146,18 @@ public class Class {
         //  sem nada para decimal
         //  resultado sempre sera em binario.
 
-        String s = "0x014B4820";
+        // String s = inp.next();
+
+
+        String s = "0x02574820";
+
+
         binario = defTipo(s);
 
 
+        System.out.println("Tipo da Instrução: " + decodif(binario));
 
-        System.out.println(binario + " " + binario.length());
-        System.out.println(decodif(binario, tipoj,tipoi,tipor));
+        System.out.println(tMemorias(decodif(binario)));
 
 
         // R opcode (6) rs (5) rt (5) rd (5) shamt (5) funct (6)
