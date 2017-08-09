@@ -47,7 +47,6 @@ public class TipoR {
         return function.containsValue(getR(s));
     }
 
-    public boolean getReg(String s) { return function.containsValue(s); }
 
 
 

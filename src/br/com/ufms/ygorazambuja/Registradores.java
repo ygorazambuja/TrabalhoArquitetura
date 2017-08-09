@@ -44,8 +44,8 @@ public class Registradores {
 
     }
 
-    public Object getRegister(String s) { return register.get(s);    }
-    public boolean isContains(String s) { return register.containsValue(getRegister(s)); }
-
-
+    public Object getRegister(String s) {
+        setRegister();
+        return register.get(s);
+    }
 }
