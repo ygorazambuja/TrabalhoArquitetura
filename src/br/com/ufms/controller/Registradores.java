@@ -1,11 +1,11 @@
-package br.com.ufms.ygorazambuja;
+package br.com.ufms.controller;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class Registradores {
 
-    Map register = new HashMap();
+    public Map register = new HashMap();
 
     public void setRegister() {
 

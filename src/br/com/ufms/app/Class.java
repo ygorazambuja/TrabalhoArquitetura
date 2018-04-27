@@ -1,11 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package br.com.ufms.ygorazambuja;
+package br.com.ufms.app;
 
 import com.sun.org.apache.regexp.internal.RE;
+
+import br.com.ufms.controller.Registradores;
+import br.com.ufms.controller.TipoI;
+import br.com.ufms.controller.TipoJ;
+import br.com.ufms.controller.TipoR;
 
 import java.util.Scanner;
 
@@ -193,7 +193,7 @@ public class Class {
         // String s = inp.next();
 
 
-        String s = "0x02695020";
+        String s = inp.nextLine();
 
 
         binario = defTipo(s);
